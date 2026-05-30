@@ -1,162 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minute Burger Menu</title>
-  
-  <!-- Tailwind & Fonts -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  
-  <style>
-    body { font-family: 'DM Sans', sans-serif; }
-    .tab-active { background: #f97316; color: #fff; }
-    .badge-b1t1 { background: #dc2626; }
-    .badge-popular { background: #f59e0b; }
-  </style>
-</head>
-<body data-template-id="__page-root" class="min-h-screen" style="background: rgb(26, 26, 26);">
-  
-  <header class="relative overflow-hidden">
-    <img data-template-id="hero-bg" class="canva-image absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" src="https://images.pexels.com/photos/14516856/pexels-photo-14516856.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Close-up of gourmet burgers and fries on a table, creating a dark and moody dining atmosphere">
-    <div class="relative z-10 px-6 py-12 text-center">
-      <h1 data-template-id="brand-name" class="canva-text font-black tracking-tight" style="color: rgb(255, 255, 255); font-weight: 900; font-style: normal; font-size: 42px;">Minute Burger</h1>
-      <p data-template-id="brand-tagline" class="canva-text mt-2" style="color: rgb(249, 115, 22); font-weight: 500; font-style: normal; font-size: 18px;">Buy 1 Take 1 Forever!</p>
-    </div>
-  </header>
-  
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <nav class="flex flex-wrap gap-2 mb-8 justify-center" role="tablist" aria-label="Menu categories">
-      <button role="tab" aria-selected="true" class="tab-btn tab-active px-5 py-2 rounded-full font-medium transition-all" data-category="all">All</button> 
-      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Burgers">Burgers</button> 
-      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Hotdogs">Hotdogs</button> 
-      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Sides">Sides</button> 
-      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Drinks">Drinks</button>
-    </nav>
-    
-    <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Item 1 -->
-      <article data-template-id="card-1" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-1" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/15476357/pexels-photo-15476357.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mouth-watering cheeseburger with fresh lettuce and tomato on a sesame bun">
-          <div class="absolute top-3 left-3 flex gap-2">
-            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span> 
-            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-1" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Buy 1 Take 1 Minute Burger</h3>
-            <span data-template-id="price-1" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱85</span>
-          </div>
-          <p data-template-id="desc-1" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Our signature classic beef burger. Buy 1 Take 1 forever!</p>
-        </div>
-      </article>
-
-      <!-- Item 2 -->
-      <article data-template-id="card-2" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-2" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/18713424/pexels-photo-18713424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a gourmet cheeseburger with bacon, lettuce, cheese, and sauce on a dark background">
-          <div class="absolute top-3 left-3 flex gap-2">
-            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span> 
-            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-2" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Black Pepper Burger</h3>
-            <span data-template-id="price-2" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱95</span>
-          </div>
-          <p data-template-id="desc-2" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Juicy beef patty smothered in our signature sweet and spicy black pepper sauce.</p>
-        </div>
-      </article>
-
-      <!-- Item 3 -->
-      <article data-template-id="card-3" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-3" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/15010289/pexels-photo-15010289.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a mouthwatering cheeseburger with crispy bacon and melted cheese">
-          <div class="absolute top-3 left-3 flex gap-2">
-            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-3" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Bacon Cheese Burger</h3>
-            <span data-template-id="price-3" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱130</span>
-          </div>
-          <p data-template-id="desc-3" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Premium beef patty topped with crispy bacon and melted cheese.</p>
-        </div>
-      </article>
-
-      <!-- Item 4 -->
-      <article data-template-id="card-4" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-4" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/12339109/pexels-photo-12339109.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a crispy chicken sandwich with lettuce on a bun">
-          <div class="absolute top-3 left-3 flex gap-2">
-            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-4" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Chicken Time Burger</h3>
-            <span data-template-id="price-4" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱110</span>
-          </div>
-          <p data-template-id="desc-4" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Crispy fried chicken fillet with creamy mayonnaise and fresh lettuce.</p>
-        </div>
-      </article>
-
-      <!-- Item 5 -->
-      <article data-template-id="card-5" class="canva-card rounded-2xl overflow-hidden" data-cat="Hotdogs" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-5" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/4113456/pexels-photo-4113456.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Delicious hot dog with mustard, ketchup, and herbs on a rustic table surface">
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-5" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Hotdog Sandwich</h3>
-            <span data-template-id="price-5" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱60</span>
-          </div>
-          <p data-template-id="desc-5" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Classic meaty hotdog in a soft, warm bun with ketchup and mayo.</p>
-        </div>
-      </article>
-
-      <!-- Item 6 -->
-      <article data-template-id="card-6" class="canva-card rounded-2xl overflow-hidden" data-cat="Sides" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-6" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/8879369/pexels-photo-8879369.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of golden french fries in a brown cardboard takeout box">
-          <div class="absolute top-3 left-3 flex gap-2">
-            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-6" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">French Fries</h3>
-            <span data-template-id="price-6" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱45</span>
-          </div>
-          <p data-template-id="desc-6" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Golden, crispy, and perfectly salted crinkle-cut fries.</p>
-        </div>
-      </article>
-
-      <!-- Item 7 -->
-      <article data-template-id="card-7" class="canva-card rounded-2xl overflow-hidden" data-cat="Drinks" style="background: rgb(38, 38, 38);">
-        <div class="relative">
-          <img data-template-id="img-7" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/792613/pexels-photo-792613.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a refreshing iced tea with lemon slices and whole lemons on a wooden table">
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 data-template-id="name-7" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Iced Tea</h3>
-            <span data-template-id="price-7" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-style: normal; font-size: 16px;">₱35</span>
-          </div>
-          <p data-template-id="desc-7" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-style: normal; font-size: 16px;">Refreshing house-blend iced tea.</p>
-        </div>
-      </article>
-
-    </div>
-  </main>
-
-  <script>
+<script>
+    // --- TAB FUNCTIONALITY ---
     const tabs = document.querySelectorAll('.tab-btn');
     const cards = document.querySelectorAll('#menu-grid > article');
 
@@ -177,6 +20,61 @@
             });
         });
     });
+
+    // --- SHOPPING CART FUNCTIONALITY ---
+    let cart = [];
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const cartContainer = document.getElementById('cart-container');
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotalDisplay = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    // Listen for clicks on "Add to Order"
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const name = e.target.getAttribute('data-name');
+            const price = parseInt(e.target.getAttribute('data-price'));
+
+            // Add item to our cart array
+            cart.push({ name, price });
+            
+            // Update the display
+            updateCartDisplay();
+            
+            // Slide the cart up into view if it's hidden
+            cartContainer.classList.remove('translate-y-full');
+            
+            // Optional: Quick button animation
+            e.target.innerText = "Added!";
+            setTimeout(() => { e.target.innerText = "Add to Order"; }, 1000);
+        });
+    });
+
+    function updateCartDisplay() {
+        // Clear current list
+        cartItemsList.innerHTML = '';
+        let total = 0;
+
+        // Loop through cart array and build HTML
+        cart.forEach((item, index) => {
+            total += item.price;
+            const li = document.createElement('li');
+            li.className = "flex justify-between border-b border-zinc-800 py-1";
+            li.innerHTML = `<span>${item.name}</span> <span class="text-white">₱${item.price}</span>`;
+            cartItemsList.appendChild(li);
+        });
+
+        // Update the total price
+        cartTotalDisplay.innerText = `₱${total}`;
+    }
+
+    // Checkout button alert
+    checkoutBtn.addEventListener('click', () => {
+        if(cart.length === 0) return;
+        alert(`Thank you for your order! Your total is ₱${cartTotalDisplay.innerText.replace('₱', '')}.`);
+        // Reset cart after checkout
+        cart = [];
+        updateCartDisplay();
+        cartContainer.classList.add('translate-y-full'); // Hide cart again
+    });
   </script>
-</body>
-</html>
