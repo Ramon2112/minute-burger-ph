@@ -1,80 +1,431 @@
-<script>
-    // --- TAB FUNCTIONALITY ---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minute Burger</title>
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .tab-active { background: #f97316; color: #fff; }
+    .badge-b1t1 { background: #dc2626; }
+    .badge-popular { background: #f59e0b; }
+    .cart-overlay { transition: transform 0.3s ease; transform: translateX(100%); }
+    .cart-overlay.open { transform: translateX(0); }
+    .backdrop { transition: opacity 0.3s; }
+  </style>
+</head>
+<body data-template-id="__page-root" class="min-h-screen" style="background: rgb(26, 26, 26);">
+  
+  <nav class="sticky top-0 z-50 bg-zinc-900/95 backdrop-blur border-b border-zinc-800 px-6 py-3 flex items-center justify-between">
+    <h2 data-template-id="nav-brand" class="canva-text font-black" style="color: rgb(249, 115, 22); font-weight: 900; font-style: normal; font-size: 20px;">Minute Burger</h2>
+    <button id="cart-btn" class="relative p-2 text-white hover:text-orange-400 transition" aria-label="Open cart"> 
+      <i data-lucide="shopping-cart" style="width:24px;height:24px;"></i> 
+      <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span> 
+    </button>
+  </nav>
+
+  <header class="relative overflow-hidden">
+    <img data-template-id="hero-bg" class="canva-image absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" src="https://images.pexels.com/photos/14516856/pexels-photo-14516856.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Close-up of gourmet burgers and fries on a table, creating a dark and moody dining atmosphere">
+    <div class="relative z-10 px-6 py-14 text-center">
+      <h1 data-template-id="brand-name" class="canva-text font-black tracking-tight" style="color: rgb(255, 255, 255); font-weight: 900; font-style: normal; font-size: 42px;">Minute Burger</h1>
+      <p data-template-id="brand-tagline" class="canva-text mt-2" style="color: rgb(249, 115, 22); font-weight: 500; font-style: normal; font-size: 18px;">Buy 1 Take 1 Forever!</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <nav class="flex flex-wrap gap-2 mb-8 justify-center" role="tablist" aria-label="Menu categories">
+      <button role="tab" aria-selected="true" class="tab-btn tab-active px-5 py-2 rounded-full font-medium transition-all" data-category="all">All</button> 
+      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Burgers">Burgers</button> 
+      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Hotdogs">Hotdogs</button> 
+      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Sides">Sides</button> 
+      <button role="tab" aria-selected="false" class="tab-btn px-5 py-2 rounded-full font-medium transition-all bg-zinc-800 text-zinc-300" data-category="Drinks">Drinks</button>
+    </nav>
+    
+    <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <article data-template-id="card-1" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" data-name="Buy 1 Take 1 Minute Burger" data-price="85" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-1" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/15476357/pexels-photo-15476357.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mouth-watering cheeseburger">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span>
+            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-1" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Buy 1 Take 1 Minute Burger</h3>
+            <span data-template-id="price-1" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱85</span>
+          </div>
+          <p data-template-id="desc-1" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Our signature classic beef burger. Buy 1 Take 1 forever!</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-2" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" data-name="Black Pepper Burger" data-price="95" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-2" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/18713424/pexels-photo-18713424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a gourmet cheeseburger">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span>
+            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-2" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Black Pepper Burger</h3>
+            <span data-template-id="price-2" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱95</span>
+          </div>
+          <p data-template-id="desc-2" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Juicy beef patty smothered in our signature sweet and spicy black pepper sauce.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-3" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" data-name="Bacon Cheese Burger" data-price="130" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-3" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/15010289/pexels-photo-15010289.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a mouthwatering cheeseburger">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge-b1t1 text-white text-xs font-bold px-2 py-1 rounded-full">B1T1</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-3" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Bacon Cheese Burger</h3>
+            <span data-template-id="price-3" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱130</span>
+          </div>
+          <p data-template-id="desc-3" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Premium beef patty topped with crispy bacon and melted cheese.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-4" class="canva-card rounded-2xl overflow-hidden" data-cat="Burgers" data-name="Chicken Time Burger" data-price="110" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-4" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/12339109/pexels-photo-12339109.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a crispy chicken sandwich">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-4" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Chicken Time Burger</h3>
+            <span data-template-id="price-4" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱110</span>
+          </div>
+          <p data-template-id="desc-4" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Crispy fried chicken fillet with creamy mayonnaise and fresh lettuce.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-5" class="canva-card rounded-2xl overflow-hidden" data-cat="Hotdogs" data-name="Hotdog Sandwich" data-price="60" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-5" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/4113456/pexels-photo-4113456.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Delicious hot dog with mustard, ketchup">
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-5" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Hotdog Sandwich</h3>
+            <span data-template-id="price-5" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱60</span>
+          </div>
+          <p data-template-id="desc-5" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Classic meaty hotdog in a soft, warm bun with ketchup and mayo.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-6" class="canva-card rounded-2xl overflow-hidden" data-cat="Sides" data-name="French Fries" data-price="45" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-6" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/8879369/pexels-photo-8879369.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of golden french fries">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge-popular text-white text-xs font-bold px-2 py-1 rounded-full">★ Popular</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-6" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">French Fries</h3>
+            <span data-template-id="price-6" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱45</span>
+          </div>
+          <p data-template-id="desc-6" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Golden, crispy, and perfectly salted crinkle-cut fries.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+      <article data-template-id="card-7" class="canva-card rounded-2xl overflow-hidden" data-cat="Drinks" data-name="Iced Tea" data-price="35" style="background: rgb(38, 38, 38);">
+        <div class="relative">
+          <img data-template-id="img-7" class="canva-image w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/792613/pexels-photo-792613.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a refreshing iced tea">
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <h3 data-template-id="name-7" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Iced Tea</h3>
+            <span data-template-id="price-7" class="canva-text font-bold whitespace-nowrap" style="color: rgb(249, 115, 22); font-weight: 700; font-size: 16px;">₱35</span>
+          </div>
+          <p data-template-id="desc-7" class="canva-text mt-1 text-sm" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Refreshing house-blend iced tea.</p>
+          <button class="add-cart-btn mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition">Add to Cart</button>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <div id="cart-backdrop" class="backdrop fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none"></div>
+  
+  <aside id="cart-sidebar" class="cart-overlay fixed top-0 right-0 h-full w-full max-w-md bg-zinc-900 z-50 flex flex-col shadow-2xl">
+    <div class="flex items-center justify-between p-5 border-b border-zinc-700">
+      <h2 data-template-id="cart-title" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 24px;">Your Cart</h2>
+      <button id="close-cart" class="text-zinc-400 hover:text-white"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+    <div id="cart-empty" class="flex-1 flex items-center justify-center p-5">
+      <p data-template-id="cart-empty-text" class="canva-text text-center" style="color: rgb(113, 113, 122); font-weight: 400; font-size: 16px;">Your cart is empty. Add some items!</p>
+    </div>
+    <div id="cart-footer" class="p-5 border-t border-zinc-700 hidden">
+      <div class="flex justify-between mb-4">
+        <span class="text-zinc-300 font-medium">Total</span> 
+        <span id="cart-total" class="text-orange-400 font-bold text-xl">₱0</span>
+      </div>
+      <button id="checkout-btn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition text-lg">Checkout</button>
+    </div>
+  </aside>
+
+  <div id="checkout-overlay" class="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4 hidden">
+    <div data-template-id="checkout-panel" class="canva-card bg-zinc-900 rounded-2xl max-w-md w-full p-6 max-h-[80vh] overflow-y-auto" style="background: rgb(24, 24, 27);">
+      <h2 data-template-id="checkout-title" class="canva-text font-bold text-xl mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 24px;">Order Summary</h2>
+      <div id="checkout-items" class="space-y-2 mb-4"></div>
+      
+      <div class="border-t border-zinc-700 pt-4 mb-4">
+        <p class="text-zinc-300 font-medium mb-2" data-template-id="delivery-label" style="color: rgb(212, 212, 216); font-weight: 500; font-size: 16px;">Delivery Method</p>
+        <div class="flex gap-2 mb-4">
+          <button data-template-id="delivery-option" class="flex-1 px-3 py-2 rounded-lg bg-orange-500 text-white font-medium transition" data-mode="delivery" style="font-weight: 400; font-size: 16px;">Delivery</button> 
+          <button data-template-id="pickup-option" class="flex-1 px-3 py-2 rounded-lg bg-zinc-700 text-zinc-300 font-medium transition hover:bg-zinc-600" data-mode="pickup" style="font-weight: 400; font-size: 16px;">Pickup</button>
+        </div>
+        
+        <p class="text-zinc-300 font-medium mb-2" data-template-id="payment-label" style="color: rgb(212, 212, 216); font-weight: 500; font-size: 16px;">Payment Method</p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-3 p-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 cursor-pointer transition"> 
+            <input type="radio" name="payment" value="cash" checked="" class="payment-radio"> 
+            <span data-template-id="payment-cash" class="text-white font-medium" style="font-weight: 400; font-size: 16px;">Cash on Delivery</span> 
+          </label> 
+          <label class="flex items-center gap-3 p-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 cursor-pointer transition"> 
+            <input type="radio" name="payment" value="gcash" class="payment-radio"> 
+            <span data-template-id="payment-gcash" class="text-white font-medium" style="font-weight: 400; font-size: 16px;">GCash</span> 
+          </label> 
+          <label class="flex items-center gap-3 p-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 cursor-pointer transition"> 
+            <input type="radio" name="payment" value="maya" class="payment-radio"> 
+            <span data-template-id="payment-maya" class="text-white font-medium" style="font-weight: 400; font-size: 16px;">Maya</span> 
+          </label>
+        </div>
+        
+        <div id="gcash-details" class="mt-4 p-4 rounded-lg bg-zinc-800 hidden">
+          <p data-template-id="gcash-instruction" class="canva-text text-sm mb-2" style="color: rgb(212, 212, 216); font-weight: 400; font-size: 13px;">Send payment to this GCash account:</p>
+          <p data-template-id="gcash-number" class="text-orange-400 font-bold text-lg font-mono" style="font-weight: 400; font-size: 16px;">0917-123-4567</p>
+          <p data-template-id="gcash-refnum-label" class="text-zinc-300 text-xs mt-3 mb-1" style="color: rgb(113, 113, 122); font-weight: 400; font-size: 12px;">Reference Number (optional)</p>
+          <input type="text" placeholder="Enter GCash reference number" class="w-full px-3 py-2 rounded-lg bg-zinc-700 text-white placeholder-zinc-500 text-sm" id="gcash-refnum">
+        </div>
+        
+        <div id="maya-details" class="mt-4 p-4 rounded-lg bg-zinc-800 hidden">
+          <p data-template-id="maya-instruction" class="canva-text text-sm mb-2" style="color: rgb(212, 212, 216); font-weight: 400; font-size: 13px;">Send payment to this Maya account:</p>
+          <p data-template-id="maya-number" class="text-orange-400 font-bold text-lg font-mono" style="font-weight: 400; font-size: 16px;">0919-876-5432</p>
+          <p data-template-id="maya-refnum-label" class="text-zinc-300 text-xs mt-3 mb-1" style="color: rgb(113, 113, 122); font-weight: 400; font-size: 12px;">Reference Number (optional)</p>
+          <input type="text" placeholder="Enter Maya reference number" class="w-full px-3 py-2 rounded-lg bg-zinc-700 text-white placeholder-zinc-500 text-sm" id="maya-refnum">
+        </div>
+      </div>
+      
+      <div class="border-t border-zinc-700 pt-4 flex justify-between items-center mb-6">
+        <span class="text-zinc-300 font-bold">Total</span> 
+        <span id="checkout-total" class="text-orange-400 font-bold text-2xl">₱0</span>
+      </div>
+      <button id="place-order-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition text-lg">Place Order</button> 
+      <button id="cancel-checkout" class="w-full mt-2 bg-zinc-700 hover:bg-zinc-600 text-white font-medium py-2 rounded-xl transition">Cancel</button>
+    </div>
+  </div>
+
+  <div id="confirm-overlay" class="fixed inset-0 z-[70] bg-black/70 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-900 rounded-2xl max-w-sm w-full p-8 text-center">
+      <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="check" style="width:32px;height:32px;color:white;"></i>
+      </div>
+      <h2 data-template-id="confirm-title" class="canva-text font-bold text-xl mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 24px;">Order Placed!</h2>
+      <p data-template-id="confirm-text" class="canva-text" style="color: rgb(161, 161, 170); font-weight: 400; font-size: 16px;">Thank you! Your order is being prepared.</p>
+      <button id="confirm-done" class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-xl transition">Done</button>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Cart state
+    let cart = [];
+
+    // Tab filtering
     const tabs = document.querySelectorAll('.tab-btn');
     const cards = document.querySelectorAll('#menu-grid > article');
-
+    
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => { 
                 t.classList.remove('tab-active'); 
-                t.classList.add('bg-zinc-800', 'text-zinc-300'); 
-                t.setAttribute('aria-selected', 'false'); 
+                t.classList.add('bg-zinc-800','text-zinc-300'); 
+                t.setAttribute('aria-selected','false'); 
             });
             tab.classList.add('tab-active'); 
-            tab.classList.remove('bg-zinc-800', 'text-zinc-300'); 
-            tab.setAttribute('aria-selected', 'true');
-            
+            tab.classList.remove('bg-zinc-800','text-zinc-300'); 
+            tab.setAttribute('aria-selected','true');
             const cat = tab.dataset.category;
-            cards.forEach(c => {
-                c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+            cards.forEach(c => { 
+                c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; 
             });
         });
     });
 
-    // --- SHOPPING CART FUNCTIONALITY ---
-    let cart = [];
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    const cartContainer = document.getElementById('cart-container');
-    const cartItemsList = document.getElementById('cart-items');
-    const cartTotalDisplay = document.getElementById('cart-total');
-    const checkoutBtn = document.getElementById('checkout-btn');
-
-    // Listen for clicks on "Add to Order"
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const name = e.target.getAttribute('data-name');
-            const price = parseInt(e.target.getAttribute('data-price'));
-
-            // Add item to our cart array
-            cart.push({ name, price });
-            
-            // Update the display
-            updateCartDisplay();
-            
-            // Slide the cart up into view if it's hidden
-            cartContainer.classList.remove('translate-y-full');
-            
-            // Optional: Quick button animation
-            e.target.innerText = "Added!";
-            setTimeout(() => { e.target.innerText = "Add to Order"; }, 1000);
+    // Add to cart
+    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const article = btn.closest('article');
+            const name = article.dataset.name;
+            const price = parseInt(article.dataset.price);
+            const existing = cart.find(i => i.name === name);
+            if (existing) { 
+                existing.qty++; 
+            } else { 
+                cart.push({ name, price, qty: 1 }); 
+            }
+            updateCartUI();
+            openCart();
         });
     });
 
-    function updateCartDisplay() {
-        // Clear current list
-        cartItemsList.innerHTML = '';
-        let total = 0;
+    // Cart sidebar
+    const sidebar = document.getElementById('cart-sidebar');
+    const backdrop = document.getElementById('cart-backdrop');
+    const cartBtn = document.getElementById('cart-btn');
+    const closeBtn = document.getElementById('close-cart');
 
-        // Loop through cart array and build HTML
-        cart.forEach((item, index) => {
-            total += item.price;
-            const li = document.createElement('li');
-            li.className = "flex justify-between border-b border-zinc-800 py-1";
-            li.innerHTML = `<span>${item.name}</span> <span class="text-white">₱${item.price}</span>`;
-            cartItemsList.appendChild(li);
-        });
+    function openCart() { 
+        sidebar.classList.add('open'); 
+        backdrop.classList.remove('opacity-0','pointer-events-none'); 
+    }
+    
+    function closeCart() { 
+        sidebar.classList.remove('open'); 
+        backdrop.classList.add('opacity-0','pointer-events-none'); 
+    }
+    
+    cartBtn.addEventListener('click', openCart);
+    closeBtn.addEventListener('click', closeCart);
+    backdrop.addEventListener('click', closeCart);
 
-        // Update the total price
-        cartTotalDisplay.innerText = `₱${total}`;
+    function updateCartUI() {
+        const badge = document.getElementById('cart-badge');
+        const totalItems = cart.reduce((s,i) => s+i.qty, 0);
+        
+        if (totalItems > 0) { 
+            badge.textContent = totalItems; 
+            badge.classList.remove('hidden'); 
+        } else { 
+            badge.classList.add('hidden'); 
+        }
+
+        const container = document.getElementById('cart-items');
+        const emptyEl = document.getElementById('cart-empty');
+        const footer = document.getElementById('cart-footer');
+
+        if (cart.length === 0) {
+            container.classList.add('hidden'); 
+            emptyEl.classList.remove('hidden'); 
+            footer.classList.add('hidden');
+        } else {
+            container.classList.remove('hidden'); 
+            emptyEl.classList.add('hidden'); 
+            footer.classList.remove('hidden');
+            container.innerHTML = cart.map((item, i) => `
+                <div class="flex items-center justify-between bg-zinc-800 rounded-xl p-3">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-white font-medium text-sm truncate">${item.name}</p>
+                        <p class="text-orange-400 font-bold text-sm">₱${item.price * item.qty}</p>
+                    </div>
+                    <div class="flex items-center gap-2 ml-3">
+                        <button onclick="changeQty(${i},-1)" class="w-7 h-7 rounded-full bg-zinc-700 text-white flex items-center justify-center hover:bg-zinc-600">−</button>
+                        <span class="text-white font-bold text-sm w-5 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${i},1)" class="w-7 h-7 rounded-full bg-zinc-700 text-white flex items-center justify-center hover:bg-zinc-600">+</button>
+                        <button onclick="removeItem(${i})" class="ml-1 w-7 h-7 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center hover:bg-red-600/40">×</button>
+                    </div>
+                </div>
+            `).join('');
+            const total = cart.reduce((s,i) => s + i.price*i.qty, 0);
+            document.getElementById('cart-total').textContent = '₱' + total;
+        }
     }
 
-    // Checkout button alert
-    checkoutBtn.addEventListener('click', () => {
-        if(cart.length === 0) return;
-        alert(`Thank you for your order! Your total is ₱${cartTotalDisplay.innerText.replace('₱', '')}.`);
-        // Reset cart after checkout
-        cart = [];
-        updateCartDisplay();
-        cartContainer.classList.add('translate-y-full'); // Hide cart again
+    window.changeQty = (idx, delta) => { 
+        cart[idx].qty += delta; 
+        if (cart[idx].qty <= 0) cart.splice(idx,1); 
+        updateCartUI(); 
+    };
+    
+    window.removeItem = (idx) => { 
+        cart.splice(idx,1); 
+        updateCartUI(); 
+    };
+
+    // Checkout
+    let selectedDelivery = 'delivery';
+    let selectedPayment = 'cash';
+
+    // Delivery/pickup toggle
+    document.querySelectorAll('[data-mode]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-mode]').forEach(b => {
+                b.classList.remove('bg-orange-500', 'text-white');
+                b.classList.add('bg-zinc-700', 'text-zinc-300');
+            });
+            btn.classList.remove('bg-zinc-700', 'text-zinc-300');
+            btn.classList.add('bg-orange-500', 'text-white');
+            selectedDelivery = btn.dataset.mode;
+        });
     });
+
+    // Payment radio selection
+    document.querySelectorAll('.payment-radio').forEach(radio => {
+        radio.addEventListener('change', () => {
+            selectedPayment = radio.value;
+            // Toggle payment details visibility
+            document.getElementById('gcash-details').classList.toggle('hidden', radio.value !== 'gcash');
+            document.getElementById('maya-details').classList.toggle('hidden', radio.value !== 'maya');
+        });
+    });
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        closeCart();
+        const overlay = document.getElementById('checkout-overlay');
+        const itemsEl = document.getElementById('checkout-items');
+        
+        itemsEl.innerHTML = cart.map(i => `
+            <div class="flex justify-between text-sm">
+                <span class="text-zinc-300">${i.name} x${i.qty}</span>
+                <span class="text-white font-bold">₱${i.price*i.qty}</span>
+            </div>
+        `).join('');
+        
+        const total = cart.reduce((s,i) => s+i.price*i.qty, 0);
+        document.getElementById('checkout-total').textContent = '₱' + total;
+        overlay.classList.remove('hidden');
+    });
+
+    document.getElementById('cancel-checkout').addEventListener('click', () => { 
+        document.getElementById('checkout-overlay').classList.add('hidden'); 
+    });
+
+    document.getElementById('place-order-btn').addEventListener('click', () => {
+        document.getElementById('checkout-overlay').classList.add('hidden');
+        document.getElementById('confirm-overlay').classList.remove('hidden');
+        cart = [];
+        updateCartUI();
+    });
+
+    document.getElementById('confirm-done').addEventListener('click', () => { 
+        document.getElementById('confirm-overlay').classList.add('hidden'); 
+    });
+
+    updateCartUI();
   </script>
+</body>
+</html>
